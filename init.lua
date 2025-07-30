@@ -655,6 +655,7 @@ require('lazy').setup({
         ts_ls = {},
         bashls = {},
         zls = {
+          cmd = { vim.fn.expand '~' .. '/.zig/bin/zls' },
           enable_build_on_save = true,
         },
         pyright = {},
@@ -685,8 +686,6 @@ require('lazy').setup({
               completion = {
                 callSnippet = 'Replace',
               },
-              -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-              -- diagnostics = { disable = { 'missing-fields' } },
             },
           },
         },
@@ -1044,6 +1043,39 @@ require('lazy').setup({
   {
     'christoomey/vim-tmux-navigator',
     lazy = false,
+  },
+
+  { 'mfussenegger/nvim-dap' },
+  {
+    'akinsho/flutter-tools.nvim',
+    dependencies = { 'nvim-lua/plenary.nvim', 'stevearc/dressing.nvim' },
+    -- config = function()
+    --   require('flutter-tools').setup {
+    --     debugger = {
+    --       enabled = false,
+    --       run_via_dap = false,
+    --       register_configurations = function(_)
+    --         require('dap').adapters.dart = {
+    --           type = 'executable',
+    --           command = vim.fn.stdpath 'data' .. '/mason/bin/dart-debug-adapter',
+    --           args = { 'flutter' },
+    --         }
+    --
+    --         require('dap').configurations.dart = {
+    --           {
+    --             type = 'dart',
+    --             request = 'launch',
+    --             name = 'Launch flutter',
+    --             dartSdkPath = 'home/flutter/bin/cache/dart-sdk/',
+    --             flutterSdkPath = 'home/flutter',
+    --             program = '${workspaceFolder}/lib/main.dart',
+    --             cwd = '${workspaceFolder}',
+    --           },
+    --         }
+    --       end,
+    --     },
+    --   }
+    -- end,
   },
 
   -- The following two comments only work if you have downloaded the kickstart repo, not just copy pasted the
